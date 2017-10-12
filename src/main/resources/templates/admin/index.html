@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<title>管理员主页</title>
+<meta charset="utf-8" />
+</head>
+<body>
+	<div style="float:left;"><span>管理员主页</span></div>
+	<div style="float:right;">
+	<form th:action="@{/logout}" method="post">
+		<input type="submit" value="注销" />
+	</form>
+	</div>
+	<hr style="clear:both;"/>
+	<a href="/user/index">返回用户主页</a><br/>
+	<a href="/">网站主页</a>
+</body>
+</html>

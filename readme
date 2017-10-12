@@ -1,0 +1,19 @@
+version002
+1、该项目是基于spring boot，通过spring security实现了权限管理。
+2、数据库中需要定义三张表，uer、role、userrole。user表用来定义用户；role表用来定义角色；userrole中定义用户与角色之间的关系。
+	特别需要注意的是user中的enabled字段。该字段的作用为定义用户是否可用。
+3、ApplicationConfig类中定义了数据源
+4、SecurityConfig类中通过数据源直接从数据库中获取用户授权信息
+5、MySecurityUtils类中提供了当前用户数据权限数据的获取方法。
+
+version003
+1、增加PortalController，当做网站入口。在SecurityConfig中不对Portal的url进行设置，默认任意访问。
+2、在Protal的index中通过权限判断显示“登录”按钮还是显示“注销”按钮及登录信息。
+3、登录成功后的默认地址改为Protal的index页面
+
+version004
+1、增加MyUserDetails类，该类继承了UserDetails接口。使用这个类，可以将对象放入到SecurityContext中，用于存储扩展字段。
+2、增加MyUserDetailService类，该类继承自UserDetailsService接口。该类的实例用于组装AuthenticationManagerBuilder。
+3、添加@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, proxyTargetClass = true) 启动全局方法安全配置
+4、为密码添加加密算法，这里采用的加密算法是BCrypt。在SecurityConfig中组装DaoAuthenticationProvider时，指定了加密算法。
+5、所有数据库表的执行sql在resources/static/sql下。
